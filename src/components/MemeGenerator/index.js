@@ -61,18 +61,15 @@ class MemeGenerator extends Component {
 
   updateFsize = event => this.setState({fSize: event.target.value})
 
+  // if (
+  //       prevState.imgUrl.length > 0 &&
+  //       prevState.tText.length > 0 &&
+  //       prevState.bText.length > 0
+  //     )
+
   generate = event => {
     event.preventDefault()
-    this.setState(prevState => {
-      if (
-        prevState.imgUrl.length > 0 &&
-        prevState.tText.length > 0 &&
-        prevState.bText.length > 0
-      ) {
-        return {displayMeme: true, fps: prevState.fSize}
-      }
-      return {displayMeme: false}
-    })
+    this.setState(prevState => ({displayMeme: true, fps: prevState.fSize}))
   }
 
   render() {
