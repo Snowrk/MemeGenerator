@@ -63,12 +63,16 @@ class MemeGenerator extends Component {
 
   generate = event => {
     event.preventDefault()
-    const {imgUrl, tText, bText} = this.state
-    if (imgUrl !== '' && tText !== '' && bText !== '') {
-      this.setState(prevState => ({displayMeme: true, fps: prevState.fSize}))
-    } else {
-      this.setState({displayMeme: false})
-    }
+    this.setState(prevState => {
+      if (
+        prevState.imgUrl.length > 0 &&
+        prevState.tText.length > 0 &&
+        prevState.bText.length > 0
+      ) {
+        return {displayMeme: true, fps: prevState.fSize}
+      }
+      return {displayMeme: false}
+    })
   }
 
   render() {
@@ -106,10 +110,7 @@ class MemeGenerator extends Component {
             <Label htmlFor="fS">Font Size</Label>
             <Select id="fS" onChange={this.updateFsize} value={fSize}>
               {fontSizesOptionsList.map(item => (
-                <option
-                  value={item.optionId}
-                  key={item.optionId}
-                >
+                <option value={item.optionId} key={item.optionId}>
                   {item.displayText}
                 </option>
               ))}
